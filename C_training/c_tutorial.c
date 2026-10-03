@@ -3,7 +3,7 @@
 int main(void) {
   // Define an array of 100 characters.
   char buffer[100];
-  // Define a pointer to a chracter and point it
+  // Define a pointer to a character and point it
   // to the first character in the buffer.
   char* current_char = buffer;
   // Define an array of 20 points to characters and set
@@ -11,6 +11,7 @@ int main(void) {
   char* words[20] = {NULL};
   // Define some counters and flags.
   int i = 0;
+  int j = 0;
   int prev_char_not_ordinary = 1;
 
   // Read a new character from stdin until EOF is detected.
@@ -19,17 +20,26 @@ int main(void) {
     // or a tab, coming after an ordinary character
     // terminate the string by placing '\0' in the current
     // location of buffer.
-
     // PLACE YOUR CODE HERE
-
+    if (*current_char == ' ' || *current_char == '\n' || *current_char == '\t')
+    {
+        buffer[i] = '\0';
+        prev_char_not_ordinary = 1;
+    }
     // If the current character is an ordinary character
     // after a special character save the pointer to it in
     // the words[] array.
-    else if (prev_char_not_ordinary) {
+    else if (prev_char_not_ordinary)
+    {
       // PLACE YOUR CODE HERE
+      prev_char_not_ordinary = 0;
+      words[j] = current_char;
+      j++;
     }
     // Move the pointer in buff by one place.
     // PLACE YOUR CODE HERE
+    i++;
+    current_char = &buffer[i];
   }
   *current_char = '\0';
   printf("\n");
